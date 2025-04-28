@@ -9,6 +9,8 @@ import Products from './components/Products/Products'
 import TopProducts from './components/ToProducts/TopProducts'
 import Subscribe from './components/Subscribe/Subscribe'
 import Testimonials from './components/Testimonials/Testimonials'
+import Footer from './components/Footer/Footer'
+
 
 const App = () => {
   const [orderPopup, setOrderPopup] = useState(false)
@@ -37,6 +39,7 @@ const App = () => {
         <Banner />
         <Subscribe></Subscribe>
         <Testimonials></Testimonials>
+        <Footer></Footer>
       </div>
     </ThemeProvider>
   )

@@ -1,5 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
+// Import slick carousel css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const TestimonialData = [
   {
@@ -29,32 +32,30 @@ const TestimonialData = [
 ];
 
 const Testimonials = () => {
-  var settings = {
+  const settings = {
+    className: "center",
+    centerMode: true,
     dots: true,
     arrows: false,
     infinite: true,
     speed: 500,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
     pauseOnHover: true,
     pauseOnFocus: true,
+    centerPadding: "0px",
     responsive: [
-      {
-        breakpoint: 10000,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
+          infinite: true,
+          dots: true,
+          centerMode: false,
         },
       },
       {
@@ -62,6 +63,9 @@ const Testimonials = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          centerMode: false,
         },
       },
     ],
@@ -69,54 +73,65 @@ const Testimonials = () => {
 
   return (
     <div className="py-10 mb-10">
-      <div className="container">
+      <div className="container mx-auto px-4">
         {/* header section */}
-        <div className="text-center  mb-10 max-w-[600px] mx-auto">
+        <div className="text-center mb-10 max-w-[600px] mx-auto">
           <p data-aos="fade-up" className="text-sm text-primary">
             What our customers are saying
           </p>
-          <h1 data-aos="fade-up" className="text-3xl font-bold">
+          <h1 data-aos="fade-up" className="text-3xl font-bold mt-2">
             Testimonials
           </h1>
-          <p data-aos="fade-up" className="text-xs text-gray-400">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit
-            asperiores modi Sit asperiores modi
+          <p data-aos="fade-up" className="text-xs text-gray-400 mt-2">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit asperiores modi Sit asperiores modi
           </p>
         </div>
 
         {/* Testimonial cards */}
-        <div data-aos="zoom-in">
+        <div className="max-w-[85rem] mx-auto">
           <Slider {...settings}>
             {TestimonialData.map((data) => (
-              <div className="my-6">
-                <div
-                  key={data.id}
-                  className="flex flex-col gap-4 shadow-lg py-8 px-6 mx-4 rounded-xl dark:bg-slate-600  bg-primary/10 relative"
-                >
-                  <div className="mb-4">
-                    <img
-                      src={data.img}
-                      alt=""
-                      className="rounded-full w-20 h-20"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="space-y-3">
-                      <p className="text-xs dark:text-slate-300 text-gray-500">
+              <div key={data.id} className="px-3">
+                <div className="bg-white rounded-xl p-6 shadow-lg dark:bg-gray-800 mx-2 h-full">
+                  <div className="flex flex-col items-center">
+                    <div className="mb-4">
+                      <img
+                        src={data.img}
+                        alt={`${data.name}'s testimonial`}
+                        className="rounded-full w-20 h-20 object-cover"
+                      />
+                    </div>
+                    <div className="text-center">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-4">
                         {data.text}
                       </p>
-                      <h1 className="text-xl font-bold dark:text-slate-300 text-black/80 dark:text-light">
+                      <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
                         {data.name}
-                      </h1>
+                      </h3>
                     </div>
                   </div>
-                  <p className="text-black/20  text-9xl font-serif absolute top-0 right-0"></p>
                 </div>
               </div>
             ))}
           </Slider>
         </div>
       </div>
+
+      {/* Add custom styles for Slick slider */}
+      <style jsx>{`
+        .slick-slide {
+          padding: 0 10px;
+        }
+        .slick-list {
+          margin: 0 -10px;
+        }
+        .slick-dots li button:before {
+          font-size: 12px;
+        }
+        .slick-dots li.slick-active button:before {
+          color: #4F46E5;
+        }
+      `}</style>
     </div>
   );
 };
